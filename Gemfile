@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
+# Add bootstrap css
+gem 'bootstrap-sass'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use rails_12factor to serve static assets (Heroku)

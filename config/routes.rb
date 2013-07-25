@@ -1,4 +1,11 @@
 Cookbook::Application.routes.draw do
+  root "static#home"
+  match "/help", to: "static#help", via: "get"
+  match "/about", to: "static#home", via: "get"
+  resources :posts
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
