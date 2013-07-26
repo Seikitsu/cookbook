@@ -1,10 +1,11 @@
 Cookbook::Application.routes.draw do
   root "static#home"
+  match "/signup", to: "users#new", via: "get"
   match "/help", to: "static#help", via: "get"
   match "/about", to: "static#home", via: "get"
   resources :posts
-
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

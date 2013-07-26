@@ -1,3 +1,19 @@
  @import "bootstrap";
  body { padding-top: 60px; }
  @import "bootstrap-responsive";
+ #logo {
+ 	text-transform: uppercase;
+ 	float: left;
+	display: block;
+	padding: 10px 20px 10px;
+	margin-left: -20px;
+	font-size: 20px;
+	font-weight: 200;
+	color: #777777;
+	text-shadow: 0 1px 0 white;
+	 &:hover {
+    	text-decoration: none;
+    	text-shadow: none;
+    	background-color: transparent;
+  	}
+ }
