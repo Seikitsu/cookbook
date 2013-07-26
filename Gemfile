@@ -5,7 +5,7 @@ gem 'rails', '4.0.0'
 # Add bootstrap css
 gem 'bootstrap-sass'
 #  add bcrypt to encrypt passwords
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', '~> 3.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use rails_12factor to serve static assets (Heroku)
