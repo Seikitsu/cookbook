@@ -4,6 +4,8 @@ ruby "1.9.3"
 gem 'rails', '4.0.0'
 # Add bootstrap css
 gem 'bootstrap-sass'
+# bootstrap forms
+gem 'simple_form', '>= 3.0.0.rc'
 #  add bcrypt to encrypt passwords
 gem 'bcrypt-ruby', '~> 3.0.0'
 # Use sqlite3 as the database for Active Record

@@ -1,7 +1,7 @@
- @import "bootstrap";
- body { padding-top: 60px; }
- @import "bootstrap-responsive";
- #logo {
+@import "bootstrap";
+body { padding-top: 60px; }
+@import "bootstrap-responsive";
+#logo {
  	text-transform: uppercase;
  	float: left;
 	display: block;
@@ -16,4 +16,18 @@
     	text-shadow: none;
     	background-color: transparent;
   	}
- }
+}
+
+.field_with_errors {
+	@extend .control-group;
+	@extend .error;
+	background-color: transparent !important;
+	padding: 0px !important;
+	display: inline !important;
+	input {
+		border-color: #953b39;
+		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+		-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+	}
+}
