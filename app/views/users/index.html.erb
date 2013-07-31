@@ -1,9 +1,9 @@
-<h1>Listing users</h1>
+<h1>Uživatelé</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Jméno</th>
       <th>Email</th>
       <th></th>
       <th></th>
@@ -16,14 +16,12 @@
       <tr>
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ukázat', user %></td>
+        <% if current_user.admin? && !current_user?(user) %>
+        <td><%= link_to 'Editovat', edit_user_path(user) %></td>
+        <td><%= link_to 'Smazat', user, method: :delete, data: { confirm: 'Určitě chcete smazat tohoto uživatele?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User', new_user_path %>

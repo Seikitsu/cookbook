@@ -1,0 +1,8 @@
+<h2 class="heading"><%= link_to(post.heading, post) %></h2>
+<div class="content"><%= post.content %></div>
+<div class="by-user">
+   <b> <%= User.find_by(id: post.user_id).name %></b>
+</div>
+<div class="timestamp">
+    <i>Posted <%= time_ago_in_words(post.created_at) %> ago.</i>
+</div>

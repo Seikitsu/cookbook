@@ -1,0 +1,12 @@
+<%= provide(:title, "Login") %>
+<%= form_for(:session, url:sessions_path) do |f| %>
+	<%= f.label :email, "Email" %>
+	<%= f.text_field :email %>
+
+	<%= f.label :password, "Heslo" %>
+	<%= f.password_field :password %>
+	<br />
+	<%= f.submit "Sign in", class: "btn btn-primary" %>
+<% end %>
+<br />
+Nemáš účet? <%= link_to "Zaregistruj se!", signup_path %>

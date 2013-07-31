@@ -1,8 +1,12 @@
 Cookbook::Application.routes.draw do
   root "static#home"
   match "/signup", to: "users#new", via: "get"
+  match "/signin", to: "sessions#new", via: "get"
+  match "/signout", to: "sessions#destroy", via: "delete"
   match "/help", to: "static#help", via: "get"
   match "/about", to: "static#home", via: "get"
+  match "/new", to: "posts#new", via: "get"
+  match "/posts", to: "static#home", via: "get"
   resources :posts
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

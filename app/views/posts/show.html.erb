@@ -1,14 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Content:</strong>
+  <h2><%= @post.heading %></h2>
+
+
+<div class="content">
   <%= @post.content %>
-</p>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
+<div class="by-user">
+    <b><%= User.find_by(id: @post.user_id).name %></b>
+</div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
+<%= link_to 'Zpět', root_url %>
+    
+<% if current_user?(@post.user) || admin_user?(@post.user) %>
+| <%= link_to "Smazat", @post, method: :delete,
+                                  data: { confirm: "Určite chcete smazat tento článek?" },
+                                  title: @post.heading %>
+<% end %>

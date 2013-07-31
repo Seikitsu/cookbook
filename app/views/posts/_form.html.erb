@@ -1,24 +1,17 @@
 <%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
+    <%= f.label :heading, "Název článku" %>
+    <%= f.text_field :heading %>
   </div>
   <div class="field">
+    <%= f.label :content, "Článek" %>
+    <%= f.text_area :content, size: "60x12" %>
+  </div>
+  <!--<div class="field">
     <%= f.label :user_id %><br>
     <%= f.number_field :user_id %>
-  </div>
+  </div>-->
   <div class="actions">
     <%= f.submit %>
   </div>

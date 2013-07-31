@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:create, :destroy, :edit]
+  before_action :correct_user,   only: [:destroy, :edit]
 
   # GET /posts
   # GET /posts.json
@@ -24,41 +26,27 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    @post = current_user.posts.build(post_params) #Post.new(post_params)
+    if @post.save
+      flash[:success] = "Clanek vytvoren."
+      redirect_to root_url
+    else
+      flash[:error] = "Nastala chyba."
+      redirect_to root_url
     end
   end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    flash[:success] = "Clanek smazan."
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    redirect_to root_url
   end
 
   private
@@ -69,6 +57,13 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id)
+      params.require(:post).permit(:content, :heading)
+    end
+
+    def correct_user
+      unless current_user?(@post.user) || current_user.admin?
+        flash[:error] = "Nemate opravneni."
+        redirect_to(root_path)
+      end
     end
 end
