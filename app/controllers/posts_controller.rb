@@ -39,6 +39,12 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    if @post.update_attributes(post_params)
+      flash[:success] = "Clanek editovan."
+      redirect_to root_url
+    else
+      render 'edit'
+    end
   end
 
   # DELETE /posts/1

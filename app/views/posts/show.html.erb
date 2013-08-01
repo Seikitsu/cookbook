@@ -15,7 +15,8 @@
 <%= link_to 'Zpět', root_url %>
     
 <% if current_user?(@post.user) || admin_user?(@post.user) %>
-| <%= link_to "Smazat", @post, method: :delete,
+	| <%= link_to "Smazat", @post, method: :delete,
                                   data: { confirm: "Určite chcete smazat tento článek?" },
                                   title: @post.heading %>
+    | <%= link_to "Editovat", edit_post_path(@post) %>
 <% end %>

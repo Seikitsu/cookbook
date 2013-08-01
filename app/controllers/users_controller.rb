@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user, only: [:destroy, :edit]
+  before_action :correct_user,   only: [:edit, :update, :destroy]
 
   def index
     @users = User.all
@@ -17,6 +16,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def create
@@ -32,6 +32,14 @@ class UsersController < ApplicationController
 
 
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      sign_in @user
+      flash[:success] = "Nastaveni zmeneno."
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -53,13 +61,6 @@ class UsersController < ApplicationController
     def correct_user
       unless current_user?(@user) || current_user.admin?
         flash[:error] = "Zde nemate pristup."
-        redirect_to(root_path)
-      end
-    end
-
-    def admin_user
-      unless current_user.admin?
-        flash[:error] = "Nemate opravneni."
         redirect_to(root_path)
       end
     end
