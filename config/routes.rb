@@ -1,4 +1,6 @@
 Cookbook::Application.routes.draw do
+  
+
   root "static#home"
   match "/signup", to: "users#new", via: "get"
   match "/signin", to: "sessions#new", via: "get"
@@ -7,9 +9,14 @@ Cookbook::Application.routes.draw do
   match "/about", to: "static#about", via: "get"
   match "/new", to: "posts#new", via: "get"
   match "/posts", to: "static#home", via: "get"
-  resources :posts
+  resources :posts, :shallow => true do
+    resources :comments
+    resources :ratings
+  end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :comments
+  resources :ratings
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

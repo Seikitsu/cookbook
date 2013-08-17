@@ -1,0 +1,13 @@
+<%=
+def ratingTotal
+	ratingTotal = 0
+	@rating.post.ratings.each do |f|
+	      ratingTotal = ratingTotal + f.rating
+	end
+	return ratingTotal
+end
+%>
+$ratingTotal = <%= ratingTotal %>;
+$ratingCount = <%= @rating.post.ratings.count %>;
+$postRating = ($ratingTotal/$ratingCount).toFixed(1);
+$("#post-rating").html($postRating);

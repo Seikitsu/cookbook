@@ -1,0 +1,15 @@
+<%= form_for(@rating, :remote => true, :url =>post_ratings_path(@post)) do |f| %>
+	1 <%= f.radio_button :rating, "1" %>
+
+	2 <%= f.radio_button :rating, "2" %>
+
+	3 <%= f.radio_button :rating, "3" %>
+
+	4 <%= f.radio_button :rating, "4" %>
+
+	5 <%= f.radio_button :rating, "5" %>
+
+	<%= f.hidden_field :post_id, :value => @post.id %>
+
+	<%= f.submit "Ohodnoť" %>
+<% end %>

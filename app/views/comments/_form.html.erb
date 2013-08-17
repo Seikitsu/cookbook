@@ -1,0 +1,18 @@
+<%= form_for(@comment, :remote => true, :url =>post_comments_path(@post)) do |f| %>
+  
+  <div class="field">
+    <%= f.label :name, "Jméno" %>
+    <%= f.text_field :name, value: current_user.name %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email, value: current_user.email %>
+  </div>
+  <div class="field">
+    <%= f.label :content, "Komentář" %>
+    <%= f.text_area :content, size: "60x12" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

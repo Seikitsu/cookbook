@@ -11,6 +11,15 @@
     <b><%= User.find_by(id: @post.user_id).name %></b>
 </div>
 
+<div class="rating">
+	Hodnocení = <span id="post-rating"><%= @postRating %></span>
+
+	<br />
+
+	Ohodnoťte od jedné do pěti jako ve škole:
+
+	<%= render 'ratings/form' %>
+</div>
 
 <%= link_to 'Zpět', root_url %>
     
@@ -19,4 +28,15 @@
                                   data: { confirm: "Určite chcete smazat tento článek?" },
                                   title: @post.heading %>
     | <%= link_to "Editovat", edit_post_path(@post) %>
+<% end %>
+<div id="comments-count">
+<%= @post.comments.count %> komentářů
+</div>
+
+<div id="comments-container">
+<%= render @comments %>
+</div>
+
+<% if signed_in? %>
+<%= render 'comments/form' %>
 <% end %>

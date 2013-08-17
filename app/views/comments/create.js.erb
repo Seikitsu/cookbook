@@ -1,0 +1,3 @@
+$("<%= escape_javascript(render @comment) %>").prependTo("#comments-container");
+$('html,body').animate({scrollTop: $("#comments-container").offset().top-30});
+$("#comment_content").val("");

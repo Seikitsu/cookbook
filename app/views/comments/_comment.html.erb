@@ -1,0 +1,14 @@
+<div class="comment">
+	<div class="comment-content"><%= comment.content %></div>
+	<div class="comment-name">- <%= link_to comment.name, comment.user %></div>
+	<div class="comment-email"><%= comment.email %></div>
+	<div class="timestamp">
+	    <i>Posted <%= time_ago_in_words(comment.created_at) %> ago.</i>
+	</div>
+	<br />
+	<% if current_user?(comment.user) || admin_user?(comment.user) %>
+	<%= link_to "Smazat", comment, method: :delete,
+                                  data: { confirm: "Určite chcete smazat tento komentář?" },
+                                  title: "Smazat komentář" %>
+	<% end %>
+</div>
