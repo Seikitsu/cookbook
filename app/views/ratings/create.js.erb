@@ -11,3 +11,4 @@ $ratingTotal = <%= ratingTotal %>;
 $ratingCount = <%= @rating.post.ratings.count %>;
 $postRating = ($ratingTotal/$ratingCount).toFixed(1);
 $("#post-rating").html($postRating);
+$("#rating-form").html("Děkujeme za Vaše hodnocení.");

@@ -1,8 +1,8 @@
-class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show]
-  before_action :check_rating, only: [:create, :update, :edit]
+class RatingsController < ApplicationController 
+  before_action :set_rating, only: [:show, :edit, :update, :destroy]
 
   def show
+    @rating = Rating.find(params[:id])
   end
 
   def new
@@ -25,8 +25,7 @@ class RatingsController < ApplicationController
   def update
   end
 
-  def check_rating
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -38,4 +37,5 @@ class RatingsController < ApplicationController
     def rating_params
       params.require(:rating).permit(:rating, :user_id, :post_id)
     end
+
 end
