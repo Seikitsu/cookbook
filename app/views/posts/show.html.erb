@@ -14,16 +14,19 @@
 <div class="rating">
 	Hodnocení = <span id="post-rating"><%= @postRating %></span>
 
+  <% if signed_in? %>
+    <% unless Rating.all.any? {|r| r.post == @post && r.user == current_user } %>
+        <div id="rating-form">
+          <br />
 
-  <% unless Rating.all.any? {|r| r.post == @post && r.user == current_user } %>
-      <div id="rating-form">
-        <br />
+          Ohodnoťte od jedné do pěti jako ve škole:
 
-        Ohodnoťte od jedné do pěti jako ve škole:
-
-          
-        <%= render 'ratings/form' %>
-      </div>
+            
+          <%= render 'ratings/form' %>
+        </div>
+    <% end %>
+  <% else %>
+    Hodnotit můžou jen přihlášení uživatelé. Přihlaš se <%= link_to "zde", signin_path %>.
   <% end %>
 </div>
 
