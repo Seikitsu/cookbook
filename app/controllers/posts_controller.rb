@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:create, :destroy, :edit]
   before_action :correct_user,   only: [:destroy]
-  before_action :calculate_rating, only: :show
   # GET /posts
   # GET /posts.json
   def index
@@ -58,12 +57,6 @@ class PostsController < ApplicationController
     flash[:success] = "Clanek smazan."
     @post.destroy
     redirect_to root_url
-  end
-
-  def calculate_rating
-    @post = Post.find(params[:id])
-
-    @postRating = @post.ratings.average('rating').round(1) || 0
   end
 
   private

@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
 
     respond_to do |format|
       if @rating.save
-        @ratingAvarage = @rating.post.ratings.average('rating').round(1)
+        @ratingAvarage = @rating.post.averageRating
 
         format.html 
         format.js

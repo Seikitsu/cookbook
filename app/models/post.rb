@@ -6,4 +6,10 @@ class Post < ActiveRecord::Base
 	validates :user_id, presence: true
 	validates :content, presence: true
 	validates :heading, presence: true
+
+	def averageRating
+		rating = self.ratings.average('rating')
+		return 0 unless rating 
+		return rating.round(1)
+	end
 end

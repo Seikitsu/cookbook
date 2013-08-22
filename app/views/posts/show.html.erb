@@ -12,7 +12,7 @@
 </div>
 
 <div class="rating">
-	Hodnocení = <span id="post-rating"><%= @postRating %></span>
+	Hodnocení = <span id="post-rating"><%= @post.averageRating %></span>
 
   <% if signed_in? %>
     <% unless has_rated?(@post) %>
