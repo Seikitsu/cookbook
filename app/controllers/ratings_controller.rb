@@ -11,8 +11,11 @@ class RatingsController < ApplicationController
 
   def create
     @rating = current_user.ratings.create(rating_params)
+
     respond_to do |format|
       if @rating.save
+        @ratingAvarage = @rating.post.ratings.average('rating').round(1)
+
         format.html 
         format.js
       else

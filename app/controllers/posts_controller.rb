@@ -62,19 +62,8 @@ class PostsController < ApplicationController
 
   def calculate_rating
     @post = Post.find(params[:id])
-    @ratings = @post.ratings
-    postRating = 0
-    numberOfRatings = 1
 
-    if @ratings.count > 1
-      numberOfRatings = @ratings.count
-    end
-
-    @ratings.each do |f|
-      postRating = postRating + f.rating
-    end
-
-    @postRating = (postRating / numberOfRatings).round(1)
+    @postRating = @post.ratings.average('rating').round(1) || 0
   end
 
   private
